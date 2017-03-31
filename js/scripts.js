@@ -3,8 +3,15 @@ $(document).ready(function(){
   $("form").submit(function(e) {
 
     e.preventDefault();
+
     // collect input from user
     var input = $("form input").val();
+    // check to see if user entered any input into the field
+    if (!input) {
+      $(".warning").show();
+    } else {
+      $(".warning").hide();
+    }
     // remove spaces, and special chars
     modifiedInput = input.replace(/ /g,"");
     // remove all special chars

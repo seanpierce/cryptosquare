@@ -1,3 +1,7 @@
 #encoded-message {
   font-size: 2em;
 }
+.warning {
+  display: none;
+  color: red;
+}
