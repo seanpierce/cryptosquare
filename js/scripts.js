@@ -26,19 +26,5 @@ $(document).ready(function(){
   for(var i = 0; i < roundRoot; i++){
     console.log(writeColumn(i));
   }
-  // funcLoop = 1
-  // i = 0;
-  // while (funcLoop <= roundRoot) {
-  //   alert(writeColumn());
-  //   i++
-  //   funcLoop++;
-  // }
-
-
-
-
-
-
-
 
 });
