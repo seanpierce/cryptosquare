@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   $("form").submit(function(e) {
+
     e.preventDefault();
     // collect input from user
     var input = $("form input").val();
@@ -12,14 +13,17 @@ $(document).ready(function(){
     modifiedInput = modifiedInput.toLowerCase();
     var message = modifiedInput.split("");
     var messageLength = message.length;
+
+    // declare global arrays
     var scramWord = [];
     var scramMessage = [];
+
     // write some math to determine next largest square root
     var root = Math.sqrt(messageLength);
     var roundRoot = Math.ceil(root);
-    console.log(roundRoot);
-    // roundRoot is our number of cols and rows
+    console.log(roundRoot); // roundRoot is the magic number!
 
+    // create function to loop through a single column, concatenating a "word" from the letters within
     var writeColumn = function(i) {
       var count = 1;
       while (count <= roundRoot) {
@@ -31,12 +35,17 @@ $(document).ready(function(){
       return scramWord.join("");
     }
 
-    for(var i = 0; i < roundRoot; i++){
+    // loop through each vitual "column" and push each "word" to an array
+    for (var i = 0; i < roundRoot; i++) {
       scramMessage.push(writeColumn(i));
     }
+
+    // the scramMessage array contains multiple items composed of each "step" through the previous loop...
+    // we want to collect only the final item in the scramMessage array
     var lastMessage = scramMessage.length - 1;
     var encodedMessage = scramMessage[lastMessage].split("");
     var encodedLength = encodedMessage.length;
+
     // loop through encoded message and splice a space in every after 5 chars
     var n = 5;
     while (n <= (encodedLength + 5)) {
@@ -44,6 +53,7 @@ $(document).ready(function(){
       n = n + 6;
     }
 
+    // write result to page
     $("#initial-input").text('"' + input + '" becomes:');
     $("#encoded-message").text(encodedMessage.join(""));
   });
